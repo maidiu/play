@@ -115,7 +115,7 @@ function raveTime(color) {
     }, 1800)
     setTimeout(()=> {
         pulsing = setInterval(() => pulse(), 110)
-    }, 8000)
+    }, 7700)
     hardcore.currentTime = 0;
     hardcore.play();
     isPlaying = true;
@@ -327,15 +327,15 @@ $(document).on("click", "button", function(event) {
 
 addColor.addEventListener('click', function(e) {
     e.preventDefault();
-    let butts = document.querySelectorAll('button');
-    if (butts.length <= 17) {
+    let butts = $("button.deleteable");
+    if (butts.length <= 15) {
         messaged = false;
         scolded = false;
         scold.style.display = 'none';
-        $('button:first').before(`<button class='deleteable'>${colorDropdown.value.toLowerCase()}</button>`)
+        $('button.deleteable:first').before(`<button class='deleteable'>${colorDropdown.value.toLowerCase()}</button>`)
         addButtons();
     
-    } else if (butts.length > 17 && messaged === false) {
+    } else if (butts.length > 15 && messaged === false) {
         
         scold.innerText = 'that\'s probably enough eh; delete some first ffs'
         $("form").before(scold)
