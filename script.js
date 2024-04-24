@@ -188,16 +188,33 @@ $(document).on('keypress', function(event) {
         for (let i = 0; i < pressed.length - 1; i++) {
             message += pressed[i];
           }
-        eichOne.innerText = `you typed: ${message}`;
+        eichOne.innerText = `"${message}" --${randomResponse()}`;
         pressed = [];
     }})
 
 $('h1').on('mouseover', function() {
-    $('h1').text('you\'re hovering')
+    $('h1').text('stop hovering')
 })
 
+const responses = ['clever', 
+                    'brilliant', 
+                    'you don\'t say', 
+                    'come up with that all on your own?', 
+                    'go on', 
+                    'who would have thought?', 
+                    'go off, king', 
+                    'the mind boggles', 
+                    'bill shakespeare\'s got nothing on that',
+                    'you do know this is all being logged and sent to your mother']
+
+
+function randomResponse () {
+    let selection = Math.floor(Math.random() * 10)
+    return responses[selection]
+}
+
 $('h1').on('mouseleave', function() {
-    $('h1').text('you\ left')
+    $('h1').text('try a little typing, then press "enter"')
 })
 
 
@@ -210,11 +227,44 @@ $('button').click(function(){
     $('h1').css('color')
 })
 
+let messaged = false;
+let scolded = false;
+let scold = document.createElement('div')
+
+$(document).on("click", "button", function(event) {
+    event.preventDefault();
+    if (event.shiftKey) {
+    let numberOfButtons = document.querySelectorAll('button').length;
+    if (numberOfButtons <= 18) {
+        scold.style.display = 'none'
+    }}
+});
+
 addColor.addEventListener('click', function(e) {
     e.preventDefault();
-    $('button:first').before(`<button class='deleteable'>${colorDropdown.value.toLowerCase()}</button>`)
-    addButtons();
+    let butts = document.querySelectorAll('button');
+    if (butts.length <= 17) {
+        messaged = false;
+        scolded = false;
+        scold.style.display = 'none';
+        $('button:first').before(`<button class='deleteable'>${colorDropdown.value.toLowerCase()}</button>`)
+        addButtons();
+    
+    } else if (butts.length > 17 && messaged === false) {
+        
+        scold.innerText = 'that\'s probably enough eh; delete some first ffs'
+        $("form").before(scold)
+        scold.style.display = 'flex'
+        messaged = true;
+        return
+    } else if ((messaged === true) & (scolded === false)) {
+        scold.innerText = '"coachable" not your strong suit i see'
+        let scolded = true;
+        return 
+    } else if ((messaged === true) && (scolded === true)) { return }
+    
 })
+
 
 $(document).on('click', 'button.deleteable', function(event) {
     event.preventDefault();
