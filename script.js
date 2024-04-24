@@ -6,17 +6,35 @@ const blue = document.getElementById('blue')
 const orange = document.getElementById('orange')
 const rave = document.getElementById('lightswitch-rave')
 const bodyColor = document.body.style
-const buttons = document.querySelectorAll('button')
+let buttons = document.querySelectorAll('button')
+const addColor = document.getElementById('add')
+const skibidiRave = document.getElementById('skibidi-rave')
 
 $('h1').css('color', 'purple')
 
+function addButtons() {
+    buttons = document.querySelectorAll('button')
+        {
+            buttons.forEach((button) => {
+                if (button.classList.contains('deleteable')) {
+                const startingColor = button.innerText;
+                button.addEventListener('click', function() {
+                    document.body.style.background = '';
+                    document.body.style.background = `${startingColor}`
+        //document.body.style.opacity = '0.5'
+                    })
+                button.addEventListener('dblclick', () => {
+                    if (isPlaying) {
+                        endRave();
+                    } else {
+                        raveTime(startingColor);
+                    }
+                })}}
+        )}}
 
-for (let i = 0; i < (buttons.length - 1); i++) {
-    buttons[i].addEventListener('click', function() {
-    document.body.style.background = '';
-    document.body.style.background = `${buttons[i].innerHTML}`
-    //document.body.style.opacity = '0.5'
-})}
+
+
+addButtons()
 
 /*let isDark = false;
 let origColor = ''
@@ -29,25 +47,85 @@ function toWhite() {
     document.body.style.background = 'white'
 }*/
 
-let raving
 
+let raving;
+let isPlaying = false;
 
-
-function toggleRave() {
-    document.body.style.background = '';
-    document.body.classList.toggle('rave')
+function toggleRave(color) {
+    document.body.style.background = color;
+    document.body.classList.toggle('rave');
 }
 
-function raveTime() {
-    raving = setInterval(toggleRave, 100)
+function raveTime(color) {
+    raving = setInterval(() => toggleRave(color), 70);
+    skibidiRave.currentTime = 0;
+    skibidiRave.play();
+    isPlaying = true;
+    document.body.classList.add('go');
 }
 
 function endRave() {
-    clearInterval(raving)
+    clearInterval(raving);
+    skibidiRave.pause();
+    isPlaying = false;
+    document.body.classList.remove('go');
 }
 
-rave.addEventListener('mousedown', raveTime)
-rave.addEventListener('mouseup', endRave)
+/*buttons.forEach((button) => {
+    const startingColor = button.innerText;
+
+    if (button.classList.contains('deleteable')) {
+        button.addEventListener('dblclick', () => {
+            if (isPlaying) {
+                endRave();
+            } else {
+                raveTime(startingColor);
+            }
+        });
+    }
+});*/
+
+
+
+
+
+/*buttons.forEach((button) => {
+    let raving
+    let isPlaying = false;
+
+    function toggleRave() {
+    let startingColor = button.innerText
+    document.body.style.background = startingColor;
+    document.body.classList.toggle('rave')
+    }
+    function raveTime() {
+        raving = setInterval(toggleRave, 70)
+        if (!isPlaying) {
+            skibidiRave.currentTime = 0;
+            skibidiRave.play();
+            isPlaying = true;
+          }
+          document.body.classList.add('go')
+    }
+    function endRave() {
+        clearInterval(raving)
+        if (isPlaying) {
+            skibidiRave.pause();
+            isPlaying = false;
+          }
+          document.body.classList.remove('go')
+    }
+        if (button.classList.contains('deleteable')) {
+            if (document.body.classList.contains('go')) {
+                button.addEventListener('dblclick', endRave)
+            } else if (!document.body.classList.contains('go')) {   
+            button.addEventListener('dblclick', raveTime)
+            } 
+            } else { return }})
+    /*else if (button.classList.contains('lightswitch-rave')) {
+        button.addEventListener('mousdown', raveTime('white'))
+        button.addEventListener('mouseup', endRave)*/
+       
 
 /*rave.addEventListener('click', ()=> {
     if (isDark === false) {
@@ -128,9 +206,20 @@ let colorChange = document.querySelector('#color-change')
 document.querySelector('#submit').addEventListener('click', function(e){
     e.preventDefault();
     document.body.style.background = `${colorDropdown.value}`})
-
 $('button').click(function(){
     $('h1').css('color')
+})
+
+addColor.addEventListener('click', function(e) {
+    e.preventDefault();
+    $('button:first').before(`<button class='deleteable'>${colorDropdown.value.toLowerCase()}</button>`)
+    addButtons();
+})
+
+$(document).on('click', 'button.deleteable', function(event) {
+    event.preventDefault();
+    if (event.shiftKey) {
+    $(event.target).remove();}
 })
 
 

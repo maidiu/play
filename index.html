@@ -11,23 +11,29 @@
 </head>
 <body>
     
-    <h1 id="jQuery">Skibidi</h1>
+    <h1 id="jQuery">Time To Rave</h1>
+    <p>Click buttons for colors.<br> Double-click to rave.<br>Choose more rave colors from the drop-down.</p>
+    <audio id="skibidi-rave" loop>
+        <source src="skibiditoilet.m4a" type="audio/mp4">
+    </audio>
     
     <!--<a href="https://blackoutbookingmanagement.com">
         <img src="images/front.jpg" alt="logo and bear" id="logo">
     </a>-->
-    <button id="red">red</button>
-    <button id="green">green</button>
-    <button id="blue">blue</button>
-    <button id="yellow">yellow</button>
-    <button id="orange">orange</button>
-    <button id="white">white</button>
-    <button id="lightswitch-rave">rave time</button>
-
+    <div id="buttons">
+        <button class="deleteable" id="red">red</button>
+        <button class="deleteable" id="green">green</button>
+        <button class="deleteable" id="blue">blue</button>
+        <button class="deleteable" id="yellow">yellow</button>
+        <button class="deleteable" id="orange">orange</button>
+        <button class="deleteable" id="white">white</button>
+    <!--<button class="lightswitch-rave">rave time</button>-->
+    </div>
     
     <form>
         <select id="color-dropdown"></select>
             <button type="submit" id="submit">submit</button>
+            <button id="add">Add Color (Shift+Click to remove)</button>
     </form>
 
      

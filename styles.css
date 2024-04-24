@@ -1,21 +1,46 @@
+/* {border: white solid 3px;}*/
+
 body {
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    
+    height: 100vh;
+    width: 100vw;
+}
+
+p {
+    text-align: center;
 }
 
 .rave {
-    background-color: black;
+    background-color: black !important;
+}
+
+#buttons {
+    display:flexbox;
+    margin: 0;
+    padding: 0;
+    max-width: 40vw;
+}
+
+#add {
+    display: flex;
+    width: 300px;
+    font-size: 1em;
+    justify-content: center;
+    align-items: center;
 }
 
 
 button {
     width: 120px;
-    height: 50px;
-    margin: 10px;
-    font-size: 1.5em;
+    height: 40px;
+    margin: 8px;
+    font-size: 1em;
+    border-radius: 15px;
 }
 
 .bear {
