@@ -24,12 +24,14 @@ function addButtons() {
         //document.body.style.opacity = '0.5'
                     })
                 button.addEventListener('dblclick', () => {
-                    if (isPlaying) {
+                    /*if (isPlaying) {
                         endRave();
-                    } else {
+                    } else {*/
                         raveTime(startingColor);
-                    }
-                })}}
+                    //}
+                })
+                skibidiRave.addEventListener('ended', endRave);
+            }}
         )}}
 
 
@@ -49,15 +51,30 @@ function toWhite() {
 
 
 let raving;
+let dancing;
+let pulsing;
 let isPlaying = false;
 
 function toggleRave(color) {
     document.body.style.background = color;
     document.body.classList.toggle('rave');
 }
+const ladybug = document.getElementById('ladybug')
+function dance() {
+    ladybug.classList.toggle('dance')
+}
+function pulse() {
+    ladybug.classList.toggle('pulse')
+}
 
 function raveTime(color) {
     raving = setInterval(() => toggleRave(color), 70);
+    setTimeout(()=> {
+        dancing = setInterval(() => dance(), 220)
+    }, 900)
+    setTimeout(()=> {
+        pulsing = setInterval(() => pulse(), 110)
+    }, 3100)
     skibidiRave.currentTime = 0;
     skibidiRave.play();
     isPlaying = true;
@@ -66,10 +83,31 @@ function raveTime(color) {
 
 function endRave() {
     clearInterval(raving);
+    clearInterval(dancing)
+    clearInterval(pulsing)
+    ladybug.classList.remove('pulse')
+    ladybug.classList.remove('dance')
     skibidiRave.pause();
     isPlaying = false;
     document.body.classList.remove('go');
 }
+
+
+
+/*function dance () {
+    const ladybug = document.getElementById('ladybug')
+    setTimeout((item) => {
+        ladybug.style.transform = 'rotate(20deg)'
+    }, 600)
+    setTimeout((item) => {
+        ladybug.style.transform = 'rotate(-20deg)'
+    }, 1080)
+    setTimeout((item) => {
+        ladybug.style.transform = 'rotate(20deg)'
+    }, 1560)
+}*/
+
+3740
 
 /*buttons.forEach((button) => {
     const startingColor = button.innerText;

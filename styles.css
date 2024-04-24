@@ -29,6 +29,28 @@ p {
     background-color: black !important;
 }
 
+#ladybug {
+    width: 100px;
+    opacity: .9;
+}
+.dance {
+    transform: rotate(15deg) scale(1.1);
+
+}
+
+.pulse {
+    opacity: 0 !important;
+}
+
+
+
+#lb-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
 #buttons {
     display: flex;
     flex-direction: row;
