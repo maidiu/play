@@ -6,15 +6,25 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="script.js" defer></script>
+    <script src="alert.js" defer></script>
     <title>RAVE TIME</title>
     
 </head>
 <body>
+    <div id="customAlert">
+        <div id="custom-alert-box">
+            <div id="custom-alert-box-text">
+            </div>
+            <button id="custom-alert-close" onclick="hideAlert()"></button>
+        </div>
+    </div>
     
     <h1 id="jQuery">TIME TO RAVE</h1>
     <p>click buttons for colors<br> double-click to rave<br>choose more rave colors from the drop-down</p>
     <div id='switch-container'>gen-alpha&nbsp;&nbsp;<div class="switch"></div> &nbsp;&nbsp;millenial</div>
+   
 
+ 
     <audio id="skibidi-rave">
         <source src="skibiditoilet.m4a" type="audio/mp4">
     </audio>

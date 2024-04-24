@@ -9,6 +9,18 @@ const bodyColor = document.body.style
 let buttons = document.querySelectorAll('button')
 const addColor = document.getElementById('add')
 const skibidiRave = document.getElementById('skibidi-rave')
+const customAlertClose = document.getElementById('custom-alert-close')
+const customAlertText = document.getElementById('custom-alert-box-text')
+const customAlert = document.getElementById('customAlert')
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    showAlert();
+               customAlertText.innerHTML = "<span style='font-size: 2em; color:red'>WARNING</span><br> (not remotely joking): <br>this page is stupid and goofy and fun but features intensely flashing lights and absolutely should not be visited by anyone with any past history of, or potential tendency for, <span style='color:red'>epilepsy</span>, <span style='color:red'>seizures</span> or any such thing. if that's you, much love, and you are hereby promising to navigate elsewhere. otherwise, you are promising that isn't you.";
+               customAlertText.style.fontSize = "1em"
+               customAlertClose.innerText = "pinky swear"
+})
+
 
 
 $('h1').css('color', 'purple')
@@ -100,10 +112,10 @@ function raveTime(color) {
     raving = setInterval(() => toggleRave(color), 70);
     setTimeout(()=> {
         dancing = setInterval(() => dance(), 220)
-    }, 900)
+    }, 1800)
     setTimeout(()=> {
         pulsing = setInterval(() => pulse(), 110)
-    }, 3100)
+    }, 8000)
     hardcore.currentTime = 0;
     hardcore.play();
     isPlaying = true;
