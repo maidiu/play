@@ -260,6 +260,7 @@ $(document).on('keypress', function(event) {
             message += pressed[i];
           }
         eichOne.innerText = `"${message}" --${randomResponse()}`;
+        eichOne.style.fontSize = '2em'
         pressed = [];
     }})
 
@@ -285,7 +286,8 @@ function randomResponse () {
 }
 
 $('h1').on('mouseleave', function() {
-    $('h1').text('try a little typing, then press "enter"')
+    $('h1').text('type, then press "enter"')
+    $('h1').css('font-size', '3em')
 })
 
 

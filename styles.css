@@ -14,8 +14,9 @@ body {
 }
 h1 {
     max-width: 90vw;
-    margin-top: 0;
-    margin-bottom: 0;
+    height: 10vh;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
     padding-bottom: 0;
     font-size: 4.5em;
     text-align: center;
@@ -23,6 +24,8 @@ h1 {
 
 p {
     text-align: center;
+    padding: 0;
+    margin: 0;  
 }
 
 .rave {
@@ -31,7 +34,7 @@ p {
 
 #ladybug {
     width: 100px;
-    opacity: .9;
+    opacity: 1;
 }
 .dance {
     transform: rotate(15deg) scale(1.1);
