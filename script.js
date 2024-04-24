@@ -10,6 +10,7 @@ let buttons = document.querySelectorAll('button')
 const addColor = document.getElementById('add')
 const skibidiRave = document.getElementById('skibidi-rave')
 
+
 $('h1').css('color', 'purple')
 
 function addButtons() {
@@ -24,13 +25,15 @@ function addButtons() {
         //document.body.style.opacity = '0.5'
                     })
                 button.addEventListener('dblclick', () => {
-                    /*if (isPlaying) {
+                    if (isPlaying) {
                         endRave();
-                    } else {*/
+                    } else {
                         raveTime(startingColor);
-                    //}
+                    }
                 })
                 skibidiRave.addEventListener('ended', endRave);
+                hardcore.addEventListener('ended', endRave)
+
             }}
         )}}
 
@@ -67,7 +70,21 @@ function pulse() {
     ladybug.classList.toggle('pulse')
 }
 
+let switchOn = false;
+const songSwitch = document.querySelector('.switch')
+songSwitch.addEventListener('click', toggleSwitch)
+function toggleSwitch() {
+    const switchElement = document.querySelector('.switch');
+    switchOn = !switchOn;
+    if (switchOn) {
+        switchElement.classList.add('on');
+    } else {
+        switchElement.classList.remove('on');
+    }
+}
+
 function raveTime(color) {
+    if (!switchOn) {
     raving = setInterval(() => toggleRave(color), 70);
     setTimeout(()=> {
         dancing = setInterval(() => dance(), 220)
@@ -79,7 +96,20 @@ function raveTime(color) {
     skibidiRave.play();
     isPlaying = true;
     document.body.classList.add('go');
-}
+} else if (switchOn) {
+    raving = setInterval(() => toggleRave(color), 70);
+    setTimeout(()=> {
+        dancing = setInterval(() => dance(), 220)
+    }, 900)
+    setTimeout(()=> {
+        pulsing = setInterval(() => pulse(), 110)
+    }, 3100)
+    hardcore.currentTime = 0;
+    hardcore.play();
+    isPlaying = true;
+    document.body.classList.add('go');
+
+}}
 
 function endRave() {
     clearInterval(raving);
@@ -88,9 +118,12 @@ function endRave() {
     ladybug.classList.remove('pulse')
     ladybug.classList.remove('dance')
     skibidiRave.pause();
+    hardcore.pause();
     isPlaying = false;
     document.body.classList.remove('go');
 }
+
+
 
 
 
